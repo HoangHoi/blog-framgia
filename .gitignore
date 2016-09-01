@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/public/storage
+/log
+Homestead.yaml
+Homestead.json
+.env
+/nbproject/private/
+/nbproject
+_ide_helper.php
