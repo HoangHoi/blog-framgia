@@ -9,7 +9,7 @@
             <div class="panel-heading">{!! trans('title.error') !!}</div>
 
             <div class="panel-body">
-                {!! trans('general.error_503') !!}
+                {!! trans('general.error_404') !!}
             </div>
         </div>
     </div>
