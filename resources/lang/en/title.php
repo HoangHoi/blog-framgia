@@ -6,5 +6,6 @@ return [
     'register' => 'Register',
     'reset_pass' => 'Reset Password',
     'user_profile' => 'Your profile',
-    'logo' => 'Blog Framgia'
+    'logo' => 'Blog Framgia',
+    'home' => 'Home'
 ];

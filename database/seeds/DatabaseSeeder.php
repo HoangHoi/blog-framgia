@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -11,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('categories')->insert([
+            ['content' => 'PHP'],
+            ['content' => 'Ruby'],
+            ['content' => 'HTML'],
+        ]);
     }
+
 }

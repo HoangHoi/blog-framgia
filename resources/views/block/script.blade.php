@@ -3,3 +3,13 @@
 
 <!-- Bootstrap -->
 {!! Html::script('lib/bootstrap/js/bootstrap.min.js') !!}
+
+<!-- My script -->
+{!! Html::script('js/myscript.js') !!}
+
+<script>
+    $(document).ready(function () {
+        var Entry = new entry();
+        Entry.init('{!! route("entry.store") !!}');
+    });
+</script>

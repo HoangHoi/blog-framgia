@@ -3,3 +3,6 @@
 
 <!-- Bootstrap -->
 {!! Html::style('lib/bootstrap/css/bootstrap.min.css') !!}
+
+<!-- My style -->
+{!! Html::style('css/style.css') !!}

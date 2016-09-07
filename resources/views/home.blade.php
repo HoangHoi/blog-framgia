@@ -1,5 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.entries')
 
-@section('main')
-@include('block.main')
+@section('title', trans('title.home'))
+
+@section('breadCrumb')
+<li class="active">{!! trans('label.home') !!}</li> 
 @endsection

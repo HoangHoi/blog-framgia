@@ -13,13 +13,16 @@
     <body>
         @include('block.header')
 
-        <div class="container">
+        <div class="container" style="min-height: 450px;">
             @yield('content')
         </div>
 
         @include('block.footer')
 
+        @include('block.modalNewEntry')
+
         <!-- JavaScripts -->
         @include('block.script')
+        @yield('script')
     </body>
 </html>

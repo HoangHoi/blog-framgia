@@ -11,4 +11,8 @@ return [
     'setting' => 'Setting',
     'previous' => 'Previous',
     'next' => 'Next',
+    'create_entry' => 'Create new entry',
+    'close' => 'Close',
+    'your_entries' => 'Your entries',
+    'box_empty' => 'The box is emty.'
 ];

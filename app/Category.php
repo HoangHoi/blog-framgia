@@ -12,4 +12,9 @@ class Category extends Model
         'content', 'created_at', 'updated_at',
     ];
 
+    public function getEntries()
+    {
+        $this->hasMany('App\Entry', 'category_id');
+    }
+
 }
