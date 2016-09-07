@@ -5,7 +5,7 @@ namespace App\Repositories\Constract;
 interface EntryRepositoryInterface
 {
 
-    public function getAllEntry();
+    public function getAllEntries();
 
     public function findWithId($id);
 

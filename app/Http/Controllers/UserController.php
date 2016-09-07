@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $user = $this->userRepositoryInterface->findById($user_id);
         if (Auth::check() && $user_id == Auth::user()->id) {
-            $entries = $this->userRepositoryInterface->getAllEntries($user);
+            $entries = $this->userRepositoryInterface->getEntries($user);
         } else {
             $entries = $this->userRepositoryInterface->getPublishedEntries($user);
         }

@@ -1,15 +1,12 @@
 @extends('layouts.master')
 
 @section('main')
-@if(count($entries)>0)
+@if($entries->count()>0)
 @foreach($entries as $entry)
-<?php
-$user = $entry->user()->first();
-?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-md-8">{!! $user->link() !!}</div>
+            <div class="col-md-8">{!! $entry->user()->first()->link() !!}</div>
             <div class="col-md-4">{!! $entry->published_at !!}</div>
         </div>
 

@@ -3,13 +3,14 @@
 @section('title', $user->name)
 
 @section('main')
+@if($entries->count()>0)
 @foreach($entries as $entry)
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-8">{!! $user->link() !!}</div>
             <div class="col-md-4">
-                @if($entry->published_at != '0000-00-00 00:00:00')
+                @if($entry->published())
                 {!! $entry->published_at !!}
                 @endif
             </div>
@@ -40,6 +41,9 @@
     @endif
 </div>
 @endforeach
+@else
+<h4>{!! trans('general.box_empty') !!}</h4>
+@endif
 @endsection
 
 @section('breadCrumb')

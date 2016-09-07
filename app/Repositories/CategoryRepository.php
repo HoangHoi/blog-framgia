@@ -26,12 +26,11 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $result = [];
         $category = $this->findById($category_id);
-        if(!$category){
+        if (!$category) {
             return false;
         }
         $result['category'] = $category;
-        $entries = $category->getEntries();
-        dd($entries);
+        $entries = $category->entriesPublished()->get();
         $result['entries'] = $entries;
         return $result;
     }

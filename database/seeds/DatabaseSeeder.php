@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder
             ['content' => 'Ruby'],
             ['content' => 'HTML'],
         ]);
+
+        factory(App\User::class, 50)->create()
+                ->each(function ($user) {
+                    $user->entries()->save(factory(App\Entry::class)->make());
+                });
     }
 
 }

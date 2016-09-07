@@ -3,14 +3,11 @@
 @section('title', $entry->title)
 
 @section('main')
-<?php
-$user = $entry->user()->first();
-?>
 <div class="panel panel-success">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-md-8">{!! $user->link() !!}</div>
-            <div class="col-md-4">{!! $entry->published_at !!}</div>
+            <div class="col-md-8">{!! $entry->user()->first()->link() !!}</div>
+            <div class="col-md-4">{!! $entry->published_at->format(config('common.date_time_format')) !!}</div>
         </div>
     </div>
     <div class="panel-body">
@@ -27,7 +24,7 @@ $user = $entry->user()->first();
                             {!! $comment->user_owner->link() !!}
                         </div>
                         <div style="font-size: 0.7em">
-                            {!! $comment->updated_at !!}
+                            {!! $comment->updated_at->format(config('common.date_time_format')) !!}
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -54,5 +51,5 @@ $user = $entry->user()->first();
 
 @section('breadCrumb')
 <li><a href="{!! route('home') !!}">{!! trans('label.home') !!}</a></li>
-<li><a href="#">PHP</a></li>
+<li>{!! $entry->categoryLink() !!}</li>
 @endsection

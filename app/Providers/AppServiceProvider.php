@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         foreach ($categories as $value) {
             $categoriesArr[$value->id] = $value->content;
         }
+        view()->share('objCategories', $categories);
         view()->share('categories', $categoriesArr);
     }
 

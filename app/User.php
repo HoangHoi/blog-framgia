@@ -30,7 +30,17 @@ class User extends Authenticatable
 
     public function entries()
     {
-        return $this->hasMany('App\Entry', 'user_id');
+        return $this->hasMany('App\Entry', 'user_id')->orderBy('published_at', 'desc');
+    }
+
+    public function followed()
+    {
+        return $this->belongsToMany('App\User', 'users_follows', 'follower_id', 'followed_id');
+    }
+
+    public function follower()
+    {
+        return $this->belongsToMany('App\User', 'users_follows', 'followed_id', 'follower_id');
     }
 
     public function isFollow($followed_id, $follower_id = null)
@@ -43,19 +53,19 @@ class User extends Authenticatable
         }
         return false;
     }
-    
+
     public function allowComment(Entry $entry)
     {
         $entry_owner = $entry->user()->first();
-        if(Auth::user()->id == $entry_owner->id){
+        if (Auth::user()->id == $entry_owner->id) {
             return true;
         }
         return $this->isFollow($entry_owner->id);
     }
-    
+
     public function link()
     {
-        return '<a href="'.route('user.showEntries', $this->id) .'">'. $this->name .'</a>';
+        return '<a href="' . route('user.showEntries', $this->id) . '">' . $this->name . '</a>';
     }
 
 }

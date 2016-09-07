@@ -12,9 +12,13 @@ class Category extends Model
         'content', 'created_at', 'updated_at',
     ];
 
-    public function getEntries()
+    public function entries()
     {
-        $this->hasMany('App\Entry', 'category_id');
+        return $this->hasMany('App\Entry', 'category_id')->orderBy('published_at','desc');
     }
 
+    public function entriesPublished()
+    {
+        return $this->entries()->where('published_at', '!=', '0000-00-00 00:00:00')->orderBy('published_at','desc');
+    }
 }

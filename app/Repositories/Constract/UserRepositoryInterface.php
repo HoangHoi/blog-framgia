@@ -5,8 +5,10 @@ namespace App\Repositories\Constract;
 interface UserRepositoryInterface
 {
 
+    public function getEntries($user);
+
     public function getAllEntries($user);
-    
+
     public function getPublishedEntries($user);
 
     public function follow($user_id);

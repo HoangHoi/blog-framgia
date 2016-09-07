@@ -61,12 +61,17 @@ class UserRepository implements UserRepositoryInterface
         return $follower;
     }
 
-    public function getAllEntries($user)
+    public function getEntries($user)
     {
         $entries = $user->entries()->get();
         return $entries;
     }
 
+    public function getAllEntries($user)
+    {
+        $followed = $user->followed();
+    }
+    
     public function getPublishedEntries($user)
     {
         $entries = $user->entries()->where('published_at', '!=', '0000-00-00 00:00:00')->get();
