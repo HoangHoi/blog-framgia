@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function entries()
     {
-        return $this->hasMany('App\Entry', 'user_id')->orderBy('published_at', 'desc');
+        return $this->hasMany('App\Entry', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function followed()

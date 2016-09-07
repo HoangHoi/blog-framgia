@@ -22,12 +22,13 @@ class CategoryController extends Controller
             return $this->showAll();
         }
         $data = $this->categoryRepositoryInterface->get($category_id);
+        $data['entries'] = $data['entries']->paginate(config('common.num_entry_per_page'));
         return view('page.category', $data);
     }
 
     public function showAll()
     {
-        return 'ok';
+        return redirect()->route('home');
     }
 
 }

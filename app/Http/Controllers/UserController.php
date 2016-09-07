@@ -22,10 +22,11 @@ class UserController extends Controller
     {
         $user = $this->userRepositoryInterface->findById($user_id);
         if (Auth::check() && $user_id == Auth::user()->id) {
-            $entries = $this->userRepositoryInterface->getEntries($user);
+            $entries = $this->userRepositoryInterface->getYourEntries($user);
         } else {
             $entries = $this->userRepositoryInterface->getPublishedEntries($user);
         }
+        $entries = $entries->paginate(config('common.num_entry_per_page'));
         return view('page.userEntries', ['user' => $user, 'entries' => $entries]);
     }
 

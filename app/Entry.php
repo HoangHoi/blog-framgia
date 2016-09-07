@@ -36,7 +36,7 @@ class Entry extends Model
 
     public function published()
     {
-        if ($this->published_at != '0000-00-00 00:00:00') {
+        if ($this->published_at > '0000-00-00 00:00:00') {
             return true;
         }
         return false;

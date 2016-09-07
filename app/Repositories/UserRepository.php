@@ -6,6 +6,7 @@ use App\Repositories\Constract\UserRepositoryInterface;
 use App\User;
 use App\UsersFollow;
 use Auth;
+use App\Entry;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -36,45 +37,29 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-//    public function isFollow($user_id)
-//    {
-//        $followed = UsersFollow::where('follower_id', Auth::user()->id)->where('followed_id', $user_id)->first();
-//        if (!$followed) {
-//            return false;
-//        }
-//        $follower = UsersFollow::where('followed_id', Auth::user()->id)->where('follower_id', $user_id)->first();
-//        if (!$follower) {
-//            return false;
-//        }
-//        return true;
-//    }
-
-    public function getFollowed()
-    {
-        $followed = UsersFollow::where('follower_id', Auth::user()->id)->get();
-        return $followed;
-    }
-
-    public function getFollower()
-    {
-        $follower = UsersFollow::where('followed_id', Auth::user()->id)->get();
-        return $follower;
-    }
-
     public function getEntries($user)
     {
-        $entries = $user->entries()->get();
+        $followed_users = $user->followed()->get();
+        $arr_followed_user = [];
+        foreach ($followed_users as $followed_user) {
+            $arr_followed_user[] = $followed_user->id;
+        }
+        $entries = Entry::where('published_at', '!=', '0000-00-00 00:00:00')
+                        ->whereIn('user_id', $arr_followed_user)
+                        ->orderBy('published_at', 'desc');
         return $entries;
     }
-
-    public function getAllEntries($user)
-    {
-        $followed = $user->followed();
-    }
     
+    public function getYourEntries($user)
+    {
+        return $user->entries();
+    }
+
     public function getPublishedEntries($user)
     {
-        $entries = $user->entries()->where('published_at', '!=', '0000-00-00 00:00:00')->get();
+        $entries = $user->entries()
+                        ->where('published_at', '!=', '0000-00-00 00:00:00')
+                        ->orderBy('published_at', 'desc');
         return $entries;
     }
 

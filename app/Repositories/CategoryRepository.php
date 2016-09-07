@@ -30,7 +30,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             return false;
         }
         $result['category'] = $category;
-        $entries = $category->entriesPublished()->get();
+        $entries = $category->entriesPublished();
         $result['entries'] = $entries;
         return $result;
     }

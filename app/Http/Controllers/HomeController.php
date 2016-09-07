@@ -24,14 +24,11 @@ class HomeController extends Controller
     {
 
         if (Auth::check()) {
-            $followed_user = Auth::user()->followed()->get();
             $entries = $this->userRepositoryInterface->getEntries(Auth::user());
-            foreach ($followed_user as $f_user) {
-                $entries = $entries->merge($this->userRepositoryInterface->getEntries($f_user));
-            }
         } else {
             $entries = $this->entryRepositoryInterface->getAllEntries();
         }
+        $entries = $entries->paginate(config('common.num_entry_per_page'));
         return view('home', ['entries' => $entries]);
     }
 

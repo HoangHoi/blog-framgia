@@ -17,18 +17,6 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-
-                <li>
-                    <!--<a>-->
-                    <form class="form-horizontal" role="form" method="POST" style="margin: 10px 15px 10px 15px;">
-                        <input id="name" type="text" class="form-control" name="name" placeholder="{!! trans('label.search') !!}">
-                    </form>
-                    <!--</a>-->
-                </li>
-            </ul>
-
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->

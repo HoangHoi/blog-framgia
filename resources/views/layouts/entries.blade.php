@@ -22,6 +22,7 @@
     </div>
 </div>
 @endforeach
+{!! $entries->render() !!}
 @else
 <h4>{!! trans('general.box_empty') !!}</h4>
 @endif

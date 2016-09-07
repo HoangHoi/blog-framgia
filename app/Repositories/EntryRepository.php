@@ -40,7 +40,7 @@ class EntryRepository implements EntryRepositoryInterface
 
     public function getAllEntries()
     {
-        $entries = $this->model->where('published_at', '!=', '0000-00-00 00:00:00')->get();
+        $entries = $this->model->where('published_at', '!=', '0000-00-00 00:00:00');
         return $entries;
     }
 

@@ -11,7 +11,12 @@
         </div>
     </div>
     <div class="panel-body">
-        {!! $entry->body !!}
+        <div class="title" style="color: blue; font-size: 1.6em;">
+            <a href="{!! route('entry.show',$entry->id) !!}">{!! $entry->title !!}</a>
+        </div>
+        <div class="body">
+            {!! $entry->body !!}
+        </div>
     </div>
     <div class="panel-footer">
         <ul class="comment list-group" style="margin-bottom: 10px">
@@ -43,6 +48,7 @@
         @endif
     </div>
 </div>
+
 @endsection
 
 @section('script')
