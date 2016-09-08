@@ -11,5 +11,12 @@
     $(document).ready(function () {
         var Entry = new entry();
         Entry.init('{!! route("entry.store") !!}');
+
+        $('.delete_button').on('click', function () {
+            $(this).parent().find('form').submit();
+        });
+        $('.publish_button').on('click', function () {
+            $(this).parent().find('form').submit();
+        });
     });
 </script>

@@ -4,20 +4,7 @@
 
 @section('main')
 <div class="panel panel-success">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-8">{!! $entry->user()->first()->link() !!}</div>
-            <div class="col-md-4">{!! $entry->published_at->format(config('common.date_time_format')) !!}</div>
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="title" style="color: blue; font-size: 1.6em;">
-            <a href="{!! route('entry.show',$entry->id) !!}">{!! $entry->title !!}</a>
-        </div>
-        <div class="body">
-            {!! $entry->body !!}
-        </div>
-    </div>
+    @include('block.entryContent')
     <div class="panel-footer">
         <ul class="comment list-group" style="margin-bottom: 10px">
 

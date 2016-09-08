@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Repositories\Constract\EntryRepositoryInterface;
 use App\Entry;
 use App\Comment;
+use Auth;
 
 class EntryRepository implements EntryRepositoryInterface
 {
@@ -16,17 +17,29 @@ class EntryRepository implements EntryRepositoryInterface
         $this->model = $entry;
     }
 
-    public function createOrUpdate($request, $id = null)
+    public function create($request)
     {
-        $entry = $this->model->findOrNew($id);
+        $entry = new Entry;
         $entry->title = $request->title;
         $entry->body = $request->body;
-        $entry->user_id = $request->user_id;
+        $entry->user_id = Auth::user()->id;
         $entry->category_id = $request->category_id;
         $entry->published_at = $request->published_at;
         return $entry->save();
     }
 
+    public function update($request)
+    {
+        $entry = $this->model->find($request->id);
+        if($entry){
+            return false;
+        }
+        $entry->title = $request->title;
+        $entry->body = $request->body;
+        $entry->category_id = $request->category_id;
+        return $entry->save();
+    }
+    
     public function publish($id, $time)
     {
         $entry = $this->model->find($id);
@@ -52,7 +65,7 @@ class EntryRepository implements EntryRepositoryInterface
     public function deleteWithId($id)
     {
         $entry = $this->model->find($id);
-        if ($entry) {
+        if ($entry && $entry->isYourEntry()) {
             $entry->delete();
             return true;
         }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Entry extends Model
 {
@@ -42,4 +43,12 @@ class Entry extends Model
         return false;
     }
 
+    public function isYourEntry()
+    {
+        $entry_owner = $this->user()->first();
+        if(Auth::check() && $entry_owner->id == Auth::user()->id){
+            return true;
+        }
+        return false;
+    }
 }

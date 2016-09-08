@@ -11,11 +11,13 @@ interface EntryRepositoryInterface
 
     public function deleteWithId($id);
 
-    public function createOrUpdate($request, $id);
+    public function create($request);
 
     public function publish($id, $time);
 
     public function comment($request);
 
     public function getEntry($id);
+
+    public function update($request);
 }

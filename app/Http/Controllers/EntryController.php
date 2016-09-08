@@ -31,8 +31,7 @@ class EntryController extends Controller
         } else {
             $request->published_at = 0;
         }
-        $request->user_id = Auth::user()->id;
-        $this->entryRepositoryInterface->createOrUpdate($request, null);
+        $this->entryRepositoryInterface->create($request);
         return '["success"=>"' . trans('create_entry_success') . '"]';
     }
 
@@ -74,9 +73,12 @@ class EntryController extends Controller
         $this->entryRepositoryInterface->createOrUpdate($request, $request->id);
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-        return 'ok';
+        if ($this->entryRepositoryInterface->deleteWithId($request->entry_id)) {
+            return redirect()->route('user.showEntries', Auth::user()->id);
+        }
+        return redirect()->route('user.showEntries', Auth::user()->id);
     }
 
 }

@@ -7,15 +7,17 @@
 @foreach($entries as $entry)
 <div class="panel panel-default">
     <div class="panel-heading">
-        <div class="row">
+        <div class="row"  style="position: relative">
             <div class="col-md-8">{!! $user->link() !!}</div>
             <div class="col-md-4">
                 @if($entry->published())
-                {!! $entry->published_at !!}
+                {!! $entry->published_at->format(config('common.date_time_format')) !!}
                 @endif
             </div>
+            @if($entry->isYourEntry())
+            @include('block.entryMenu')
+            @endif
         </div>
-
     </div>
 
     <div class="panel-body">
@@ -26,19 +28,6 @@
             {!! $entry->body !!}
         </div>
     </div>
-
-    @if(!$entry->published())
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-md-2 col-md-offset-10">
-                {!! Form::open(['route' => 'entry.publish']) !!}
-                {!! Form::hidden('entry_id', $entry->id) !!}
-                {!! Form::submit(trans('label.publish'),['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
-    @endif
 </div>
 @endforeach
 {!! $entries->render() !!}

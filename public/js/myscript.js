@@ -65,9 +65,9 @@ function entry() {
                         $('[id=' + index + ']').parent().parent().addClass('has-error').prop('title', value);
                     });
                 }
-//                $.each(data, function (index, value) {
-//                    console.log(index + ':' + value);
-//                });
+                $.each(data, function (index, value) {
+                    console.log(index + ':' + value);
+                });
             }
         });
         this.inputs.prop("disabled", false);
