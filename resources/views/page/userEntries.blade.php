@@ -29,7 +29,6 @@
                 {!! $entry->body !!}
             </div>
         </div>
-
         @if($entry->isYourEntry())
         @include('block.entryForm')
         @endif

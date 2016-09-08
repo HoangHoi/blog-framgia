@@ -41,6 +41,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $followed_users = $user->followed()->get();
         $arr_followed_user = [];
+        $arr_followed_user[] = $user->id;
         foreach ($followed_users as $followed_user) {
             $arr_followed_user[] = $followed_user->id;
         }

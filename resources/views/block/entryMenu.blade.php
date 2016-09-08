@@ -8,7 +8,6 @@
             {!! Form::close() !!}
             <a href="#" class="delete_button">Delete</a>
         </li>
-
         @if(!$entry->published())
         <li>
             {!! Form::open(['route' => 'entry.publish']) !!}
@@ -17,6 +16,5 @@
             <a href="#" class="publish_button">Publish</a>
         </li>
         @endif
-
     </ul>
 </div>

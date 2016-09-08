@@ -27,7 +27,7 @@
             @endforeach
 
         </ul>
-        @if(Auth::check() && Auth::user()->allowComment($entry))
+        @if(Auth::check() && Auth::user()->allowComment($entry) && $entry->published())
         {!! Form::open(['route' => 'entry.comment','class' => 'form-horizontal','id' => 'comment_form']) !!}
         {!! Form::hidden('entry_id',$entry->id) !!}
         {!! Form::text('content', '', ['class' => 'form-control', 'id' => 'comment_text', 'placeholder' => 'Write comment...']) !!}
