@@ -14,7 +14,10 @@
         var EntryEdit = new entryEdit();
         EntryEdit.setPreUrl('{!! asset("entry") !!}');
         $('.delete_button').on('click', function () {
-            $(this).parent().find('form').submit();
+            var prom = confirm("{!! trans('message.delete_entry') !!}");
+            if (prom) {
+                $(this).parent().find('form').submit();
+            }
         });
         $('.publish_button').on('click', function () {
             $(this).parent().find('form').submit();
