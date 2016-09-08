@@ -69,8 +69,15 @@ class EntryController extends Controller
 
     public function update(EntryRequest $request)
     {
-        $request->user_id = Auth::user()->id;
-        $this->entryRepositoryInterface->createOrUpdate($request, $request->id);
+        if ($request->published == 1) {
+            $request->published_at = Carbon::now();
+        } else {
+            $request->published_at = 0;
+        }
+        if ($this->entryRepositoryInterface->update($request)) {
+            return '["success"=>"' . trans('create_entry_success') . '"]';
+        }
+        return '["error"=>"' . trans('create_entry_success') . '"]';
     }
 
     public function destroy(Request $request)

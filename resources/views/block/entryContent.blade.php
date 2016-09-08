@@ -8,10 +8,17 @@
     </div>
 </div>
 <div class="panel-body">
-    <div class="title" style="color: blue; font-size: 1.6em;">
-        <a href="{!! route('entry.show',$entry->id) !!}">{!! $entry->title !!}</a>
+
+    <div class="" id="entry_content_{!! $entry->id !!}">
+        <div class="title" style="color: blue; font-size: 1.6em;">
+            <a href="{!! route('entry.show',$entry->id) !!}">{!! $entry->title !!}</a>
+        </div>
+        <div class="body">
+            {!! $entry->body !!}
+        </div>
     </div>
-    <div class="body">
-        {!! $entry->body !!}
-    </div>
+
+    @if($entry->isYourEntry())
+    @include('block.entryForm')
+    @endif
 </div>

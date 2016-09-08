@@ -31,15 +31,18 @@ class EntryRepository implements EntryRepositoryInterface
     public function update($request)
     {
         $entry = $this->model->find($request->id);
-        if($entry){
-            return false;
+        if ($entry && $entry->isYourEntry()) {
+            $entry->title = $request->title;
+            $entry->body = $request->body;
+            $entry->category_id = $request->category_id;
+            if (!$entry->published()) {
+                $entry->published_at = $request->published_at;
+            }
+            return $entry->save();
         }
-        $entry->title = $request->title;
-        $entry->body = $request->body;
-        $entry->category_id = $request->category_id;
-        return $entry->save();
+        return false;
     }
-    
+
     public function publish($id, $time)
     {
         $entry = $this->model->find($id);
@@ -84,7 +87,6 @@ class EntryRepository implements EntryRepositoryInterface
     public function getEntry($id)
     {
         $entry = $this->findWithId($id);
-//        $entry->f_comments = [];
         $f_comments = [];
         if (!$entry) {
             return false;
@@ -97,7 +99,6 @@ class EntryRepository implements EntryRepositoryInterface
             } else {
                 $comment->user_owner = $comment_user;
                 $f_comments[] = $comment;
-//                $entry->f_comments[] = $comment;
             }
         }
         $entry->f_comments = $f_comments;
