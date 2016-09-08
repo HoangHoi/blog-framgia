@@ -8,3 +8,5 @@ Homestead.json
 /nbproject/private/
 /nbproject
 _ide_helper.php
+.phpstorm.meta.php
+composer.lock
