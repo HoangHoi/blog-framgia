@@ -17,6 +17,7 @@ class CreateEntriesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('body');
+            $table->integer('view_count')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('category_id')->unsigned();

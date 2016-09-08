@@ -91,6 +91,23 @@ class EntryRepository implements EntryRepositoryInterface
         if (!$entry) {
             return false;
         }
+
+        $entry_view = [];
+        if (session('entry_view')) {
+            $entry_view = session('entry_view');
+            if (array_search($entry->id, $entry_view) === false) {
+                $entry_view[] = $entry->id;
+                session(['entry_view' => $entry_view]);
+                $entry->view_count++;
+                $entry->save();
+            }
+        } else {
+            $entry_view[] = $entry->id;
+            session(['entry_view' => $entry_view]);
+            $entry->view_count++;
+            $entry->save();
+        }
+
         $comments = $entry->comments()->get();
         foreach ($comments as $comment) {
             $comment_user = $comment->user()->first();

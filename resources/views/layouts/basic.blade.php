@@ -13,7 +13,7 @@
     <body>
         @include('block.header')
 
-        <div class="container" style="min-height: 450px;">
+        <div class="container-fluid" style="min-height: 450px;">
             @yield('content')
         </div>
 

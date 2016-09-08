@@ -27,13 +27,16 @@ $factory->define(App\Entry::class, function (Faker\Generator $faker) {
             return factory(App\User::class)->create()->id;
         },
         'category_id' => function () {
-            $category = App\Category::first();
-//            print_r($categories);
-//            $category = $categories[array_rand($categories)];
+            $category = App\Category::inRandomOrder()->first();
             return $category->id;
         },
         'published_at' => function () {
-            return Carbon\Carbon::now();
+            $r = rand(0, 1);
+            if ($r) {
+                return Carbon\Carbon::now();
+            } else {
+                return 0;
+            }
         }
     ];
 });

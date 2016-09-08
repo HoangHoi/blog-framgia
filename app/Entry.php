@@ -10,7 +10,7 @@ class Entry extends Model
 
     protected $table = 'entries';
     protected $fillable = [
-        'title', 'body', 'user_id', 'category_id', 'published_at', 'created_at', 'updated_at',
+        'title', 'body', 'user_id', 'view_count', 'category_id', 'published_at', 'created_at', 'updated_at',
     ];
     protected $dates = ['published_at', 'created_at', 'updated_at'];
 
@@ -46,7 +46,7 @@ class Entry extends Model
     public function isYourEntry()
     {
         $entry_owner = $this->user()->first();
-        if(Auth::check() && $entry_owner->id == Auth::user()->id){
+        if (Auth::check() && $entry_owner->id == Auth::user()->id) {
             return true;
         }
         return false;

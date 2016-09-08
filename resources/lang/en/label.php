@@ -3,7 +3,7 @@
 return [
     'home' => 'Home',
     'name' => 'Name:',
-    'email' => 'E-Mail:',
+    'email' => 'EMail:',
     'password' => 'Password:',
     're_password' => 'Confirm Password:',
     'remember' => 'Remember Me',
@@ -20,4 +20,5 @@ return [
     'or' => 'or',
     'follow' => 'Follow',
     'unfollow' => 'Unfollow',
+    'num_entry' => 'Entries:',
 ];
