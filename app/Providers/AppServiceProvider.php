@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use App\Category;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,13 +16,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::all();
-        $categoriesArr = [];
-        foreach ($categories as $value) {
-            $categoriesArr[$value->id] = $value->content;
+        if (Schema::hasTable('categories')) {
+            $categories = Category::all();
+            $categoriesArr = [];
+            foreach ($categories as $value) {
+                $categoriesArr[$value->id] = $value->content;
+            }
+            view()->share('objCategories', $categories);
+            view()->share('categories', $categoriesArr);
         }
-        view()->share('objCategories', $categories);
-        view()->share('categories', $categoriesArr);
     }
 
     /**
