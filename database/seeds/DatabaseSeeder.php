@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
 
         factory(App\User::class, 50)->create()
                 ->each(function ($user) {
-                    for($i = 0; $i<10; $i++){
-                    $user->entries()->save(factory(App\Entry::class)->make());
+                    for ($i = 0; $i < 10; $i++) {
+                        $user->entries()->save(factory(App\Entry::class)->make());
                     }
                 });
     }
